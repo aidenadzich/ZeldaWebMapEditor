@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#editor-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#tile-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    cursor: grab;
+    border: 1px solid #ccc;
+}
+
+.tile[data-tile="wall"] {
+    background-image: url('images/wall.png');
+}
+
+.tile[data-tile="water"] {
+    background-image: url('images/water.png');
+}
+
+.tile[data-tile="ground"] {
+    background-image: url('images/ground.png');
+}
+.tile[data-tile="cave"] {
+    background-image: url('images/cave.png');
+}
+
+#map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    background-color: #ddd;
+    /* Adjust width and height to fit the exact grid size */
+    width: 832px; /* 16 tiles * 50px + (15 gaps * 2px) */
+    height: 582px; /* 11 tiles * 50px + (10 gaps * 2px) */
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(16, 50px); /* 16 columns, each 50px */
+    grid-template-rows: repeat(11, 50px);   /* 11 rows, each 50px */
+    gap: 2px; /* Slightly increase gap for better separation */
+}
+
+#grid div {
+    margin-left: 34%;
+    margin-top: 34%;
+    width: 16px; /* Match the new tile size */
+    height: 16px;
+    background-size: cover;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    scale: 300%;
+}
+
+
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#output {
+    margin-top: 20px;
+    width: 800px;
+    height: 200px;
+    resize: none;
+}
+
+.tile.selected {
+    border: 2px solid blue; /* Highlight the selected tile */
+}
+#map-id {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    width: 300px;
+    display: block;
+}
