@@ -12,9 +12,19 @@ const textureSize = 16; // Each sprite is 16x16 pixels
 const spriteMap = {
     water: { x: 85, y: 160 },
     ground: { x: 0, y: 143 },
+
     wall: { x: 355, y: 96 },
+    wallTopRight: { x: 338, y: 96, width: 16, height: 16 },
+    wallTopLeft: { x: 370, y: 96, width: 16, height: 16 },
+    wallBottomRight: { x: 306, y: 96, width: 16, height: 16 },
+    wallBottomLeft: { x: 322, y: 96, width: 16, height: 16 },
+    wallTop:{ x: 314, y: 96, width: 16, height: 16 },
+
+    greenBush: { x: 290, y: 96, width: 16, height: 16 },
+
     warp: { x: 136, y: 211 },
     caveground: { x: 136, y: 194 },
+    caveWall: { x: 119, y: 211 },
     // Add more tiles here, specifying their top-left corner coordinates
 };
 tilePicker.innerHTML = '';
@@ -188,17 +198,25 @@ exportButton.addEventListener('click', () => {
             const y = cell.getAttribute('data-y');
             const texture = cell.getAttribute('data-texture');
 
-            if (destination && x && y && texture) {
+            if (destination && x && y) {
                 tileValue = `new WarpTile("${destination}", { x: ${x}, y: ${y} }, "${texture}")`;
             } else {
-                tileValue = 'new WarpTile()'; // Default value if no data
+                tileValue = 'UNDEFINED'; // Default value if no data
             }
         } else {
             tileValue = 
                 tileType === "wall" ? "new WallTile()" : 
+                tileType === "wallTopRight" ? "new WallTile('wallTopRight')" :
+                tileType === "wallTopLeft" ? "new WallTile('wallTopLeft')" :
+                tileType === "wallBottomRight" ? "new WallTile('wallBottomRight')" :
+                tileType === "wallBottomLeft" ? "new WallTile('wallBottomLeft')" :
+                tileType === "wallTop" ? "new WallTile('wallTop')" :
+                tileType === "greenBush" ? "new WallTile('greenBush')" :
+
                 tileType === "ground" ? "new GroundTile()" : 
                 tileType === "water" ? "new WaterTile()" : 
                 tileType === "caveground" ? "new GroundTile('cave')" :
+                tileType === "caveWall" ? "new WallTile('caveWall')" :
                 null;
         }
 
